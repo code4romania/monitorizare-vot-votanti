@@ -71,7 +71,7 @@ Sometimes these folders need to be created manually if the user doesn't have the
 * /storage/framework/views
 * /storage/logs
 
-Access http://localhost:8000 or http://localhost:8000/api/check in the browser to test the project.
+Access [http://localhost:8000](http://localhost:8000) or [http://localhost:8000/api/check](http://localhost:8000/api/check) in the browser to test the project. For documentation you can access [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 
 ## Project structure
 
@@ -107,7 +107,7 @@ You will need:
 
 * _PUT /api/incidents/5/approve_ (Approve incident - ADMIN)
 * _PUT /api/incidents/5/reject_ (Reject incident - ADMIN)
-* _DELETE /api/incidents/5_ (Delete incident - ADMIN)
+* _DELETE /api/incidents/5_ (Delete incident - ADMIN) 
 
 ### A Separate File for Routes
 
