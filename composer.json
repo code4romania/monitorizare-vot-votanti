@@ -10,8 +10,8 @@
 	    "tymon/jwt-auth": "0.5.*",
         "dingo/api": "1.0.*@dev",
         "barryvdh/laravel-cors": "^0.7.1",
-        "zircote/swagger-php": "^2.0",
-        "akeneo-labs/spreadsheet-parser": "^1.2"
+        "akeneo-labs/spreadsheet-parser": "^1.2",
+        "darkaonline/l5-swagger": "~3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

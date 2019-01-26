@@ -11,36 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class City extends Model
 {
-	/**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-	//public $id;
-
-	/**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-	//public $countyId;
-
-	/**
-     * @SWG\Property()
-     * @var string
-     */
-	//public $name;
-
-	/**
-     * @SWG\Property()
-     * @var string
-     */
-	//public $sirutaCode;
-
-	/**
-     * @SWG\Property()
-     * @var string
-     */
-	public $electoralCircleCode;
-
 	protected $fillable = [
 		'county_id', 'name', 'siruta_code', 'el_circle_code'
 	];

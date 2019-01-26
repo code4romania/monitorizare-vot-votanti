@@ -11,55 +11,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Incident extends Model
 {
-
-    /**
-     * @SWG\Property(format="int64")
-     * @var int
-     */
-    //public $id;
-
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $firstName;
-
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $lastName;
-
-    /**
-     * @SWG\Property()
-     * @var int
-     */
-    public $countyId;
-
-    /**
-     * @SWG\Property()
-     * @var int
-     */
-    public $cityId;
-
-    /**
-     * @SWG\Property()
-     * @var int
-     */
-    public $incidentTypeId;
-
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    public $precinctId;
-
-    /**
-     * @SWG\Property()
-     * @var string
-     */
-    //public $description;
-
     protected $fillable = [
         'first_name', 'last_name', 'county_id', 'city_id', 'incident_type_id', 'precinct_id', 'description', 'image_url'
     ];

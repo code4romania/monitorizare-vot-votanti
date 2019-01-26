@@ -18,6 +18,36 @@ class AuthController extends Controller
 {
     use Helpers;
 
+    /**
+     * @SWG\Post(path="/api/auth/login",
+     *     tags={"Authentification"},
+     *     description="Login action",
+     *     operationId="login",
+     *     produces={"application/json"},
+     *     consumes={"application/json"},
+     *     @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="password",
+     *                  type="string"
+     *              )
+     *          ),
+     *     ),
+     *     @SWG\Response(response=200, description="successful operation"),
+     *     @SWG\Response(response=401, description="unauthorized"),
+     *     @SWG\Response(response=500, description="server error")
+     * )
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|void
+     */
     public function login(Request $request)
     {
         $credentials = $request->only(['email', 'password']);
@@ -42,6 +72,44 @@ class AuthController extends Controller
         return response()->json(compact('token'));
     }
 
+    /**
+     * @SWG\Post(path="/api/auth/signup",
+     *     tags={"Authentification"},
+     *     description="Signup action",
+     *     operationId="signup",
+     *     produces={"application/json"},
+     *     consumes={"application/json"},
+     *     @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="firstName",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="lastName",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="password",
+     *                  type="string"
+     *              )
+     *          ),
+     *     ),
+     *     @SWG\Response(response=200, description="successful operation"),
+     *     @SWG\Response(response=401, description="unauthorized"),
+     *     @SWG\Response(response=500, description="server error")
+     * )
+     *
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response|\Illuminate\Http\JsonResponse|void
+     */
     public function signup(Request $request)
     {
         $signupFields = Config::get('boilerplate.signup_fields');
@@ -70,6 +138,32 @@ class AuthController extends Controller
         return $this->response->created();
     }
 
+    /**
+     * @SWG\Post(path="/api/auth/recovery",
+     *     tags={"Authentification"},
+     *     description="Recovery action",
+     *     operationId="recovery",
+     *     produces={"application/json"},
+     *     consumes={"application/json"},
+     *     @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string"
+     *              )
+     *          ),
+     *     ),
+     *     @SWG\Response(response=200, description="successful operation"),
+     *     @SWG\Response(response=401, description="unauthorized"),
+     *     @SWG\Response(response=500, description="server error")
+     * )
+     *
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response|void
+     */
     public function recovery(Request $request)
     {
         $validator = Validator::make($request->only('email'), [
@@ -92,6 +186,44 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * @SWG\Post(path="/api/auth/reset",
+     *     tags={"Authentification"},
+     *     description="Reset password action",
+     *     operationId="reset",
+     *     produces={"application/json"},
+     *     consumes={"application/json"},
+     *     @SWG\Parameter(
+     *          in="body",
+     *          name="body",
+     *          required=true,
+     *          @SWG\Schema(
+     *              @SWG\Property(
+     *                  property="email",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="password",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="password_confirmation",
+     *                  type="string"
+     *              ),
+     *              @SWG\Property(
+     *                  property="token",
+     *                  type="string"
+     *              )
+     *          ),
+     *     ),
+     *     @SWG\Response(response=200, description="successful operation"),
+     *     @SWG\Response(response=401, description="unauthorized"),
+     *     @SWG\Response(response=500, description="server error")
+     * )
+     *
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response|\Illuminate\Http\JsonResponse|void
+     */
     public function reset(Request $request)
     {
         $credentials = $request->only(
