@@ -20,7 +20,7 @@ This project is built by amazing volunteers and you can be one of them! Here's a
 
 ## Built With
 
-Uses Laravel 5.3
+Uses Laravel 5.2
 
 Main packages:
 * JWT-Auth - tymondesigns/jwt-auth
