@@ -289,25 +289,6 @@ class IncidentController extends Controller
             return $this->response->error('could_not_delete_incident', 500);
     }
 
-    private function getPaginator($incidents)
-    {
-        return [
-            'total' => $incidents->total(),
-            'currentPage' => $incidents->currentPage(),
-            'lastPage' => $incidents->lastPage(),
-            'limit' => $incidents->perPage(),
-            'previousPage' => $incidents->previousPageUrl(),
-            'nextPage' => $incidents->nextPageUrl()
-        ];
-    }
-
-    private function notFoundResponse()
-    {
-        return response()->json([
-            'error' => ['message' => 'Record does not exist']
-        ], 404);
-    }
-
     private function verifyCaptcha($token) {
 
         if (!$token) {
