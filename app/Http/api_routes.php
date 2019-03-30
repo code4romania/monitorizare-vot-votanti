@@ -1,5 +1,5 @@
 <?php
-	
+
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1',  ['middleware' => 'cors'], function ($api) {
@@ -31,13 +31,13 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 	$api->get('incidents', 'App\Api\V1\Controllers\IncidentController@index');
 	$api->get('incidents/types', 'App\Api\V1\Controllers\IncidentTypeController@index');
 	$api->get('incidents/{incidentId}', 'App\Api\V1\Controllers\IncidentController@show');
-	
+
 	// Create incident
 	$api->post('incidents', 'App\Api\V1\Controllers\IncidentController@store');
-	
+
 	//$api->get('precincts', 'App\Api\V1\Controllers\PrecinctController@list');
 	$api->get('{cityId}/precincts', 'App\Api\V1\Controllers\PrecinctController@listPerCity');
-	
+
 	//Reports overview
 	$api->get('reports', 'App\Api\V1\Controllers\ReportsController@index');
 
@@ -51,4 +51,7 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 	$api->get('statistici/sesizari-numarare-judete',   'App\Api\V1\Controllers\ReportingController@incidentsCountingPerCounty');
 	$api->get('statistici/sesizari-numarare-sectii',   'App\Api\V1\Controllers\ReportingController@incidentsCountingPerPrecinct');
 	$api->get('statistici/sesizari-tip-judete',   	   'App\Api\V1\Controllers\ReportingController@incidentTypesPerCountyTops');
+    $api->resource('forms',                             'App\Api\V1\Controllers\FormController');
+    $api->post('forms/{id}/activate',                   'App\Api\V1\Controllers\FormController@activate');
+    $api->post('forms/{id}/deactivate',                 'App\Api\V1\Controllers\FormController@deactivate');
 });
