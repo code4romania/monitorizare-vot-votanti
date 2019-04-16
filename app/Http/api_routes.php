@@ -18,6 +18,10 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 		$api->post('incidents/{incidentId}/approve', 'App\Api\V1\Controllers\IncidentController@approve');
 		$api->post('incidents/{incidentId}/reject', 'App\Api\V1\Controllers\IncidentController@reject');
 		$api->delete('incidents/{incidentId}', 'App\Api\V1\Controllers\IncidentController@destroy');
+        //Pages routes
+        $api->resource('page', 'App\Api\V1\Controllers\PageController');
+        $api->post('page/{id}/approve', 'App\Api\V1\Controllers\PageController@approve');
+        $api->post('page/{id}/reject', 'App\Api\V1\Controllers\PageController@reject');
 	});
 
 	//Public routes

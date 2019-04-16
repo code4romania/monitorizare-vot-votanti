@@ -179,6 +179,6 @@ class ReportingController extends Controller
 		$type = IncidentType::where('code', $typeCode)->first();
 		return $type->id;
 	}
-	
+
 }
     
