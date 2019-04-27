@@ -22,7 +22,7 @@ class IncidentTransformer extends Transformer
                 ],
                 'status' => $incident['status'],
                 'createdAt' => $incident['created_at']->toDateTimeString(),
-                'image' => $incident['image_url']
+                'image' => url($incident['image_url']),
         ];
     }
 }

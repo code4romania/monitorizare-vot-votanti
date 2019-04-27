@@ -2,6 +2,7 @@
 
 namespace App\Api\V1\Controllers;
 
+use App\Helpers\IncidentImageUpload;
 use JWTAuth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -11,13 +12,8 @@ use Dingo\Api\Exception\StoreResourceFailedException;
 use App\Http\Requests\StoreIncidentRequest;
 use App\Http\Controllers\Controller;
 use App\Api\V1\Transformers\IncidentTransformer;
-
 use App\Incident;
-use App\User;
-
 use App\County;
-use Intervention\Image\ImageManager;
-// use WebSocket;
 
 class IncidentController extends Controller
 {
@@ -80,16 +76,16 @@ class IncidentController extends Controller
             ->with('county')
             ->with('precinct')
             ->orderBy('created_at', 'desc');
-		if($map) {
-			$countyAbroad = County::where('code', 'DI')->first();
-			$countyAbroadId = $countyAbroad->id;
-			if($map == 'country') {
-				$query->where("county_id", '!=', $countyAbroadId);
-			}
-			if($map == 'abroad') {
-				$query->where("county_id", $countyAbroadId);
-			}
-		}
+        if ($map) {
+            $countyAbroad = County::where('code', 'DI')->first();
+            $countyAbroadId = $countyAbroad->id;
+            if ($map == 'country') {
+                $query->where("county_id", '!=', $countyAbroadId);
+            }
+            if ($map == 'abroad') {
+                $query->where("county_id", $countyAbroadId);
+            }
+        }
 
         if ($status) {
             $statuses = explode(',', $status);
@@ -103,9 +99,9 @@ class IncidentController extends Controller
             $query->whereIn('county_id', $ids);
         }
 
-        if($incidentType) {
-        	$incidentTypes = explode(',', $incidentType);
-        	$query->whereIn('incident_type_id', $incidentTypes);
+        if ($incidentType) {
+            $incidentTypes = explode(',', $incidentType);
+            $query->whereIn('incident_type_id', $incidentTypes);
         }
 
         $incidents = $query->paginate($limit);
@@ -175,7 +171,7 @@ class IncidentController extends Controller
      *   @SWG\Parameter(
      *     in="body",
      *     name="body",
-     *     description="order placed for purchasing the pet",
+     *     description="create a new incident",
      *     required=false,
      *     @SWG\Schema(ref="#/definitions/Incident")
      *   ),
@@ -211,43 +207,32 @@ class IncidentController extends Controller
         }
 
         $file = Input::file('image');
-        if($file != null) {
+        if ($file != null) {
             $extension = strtolower(Input::file('image')->getClientOriginalExtension());
-            if($extension != "jpg" && $extension != "png") {
-                throw new \Exception("Image format is not supported!");
+            if ($extension != "jpg" && $extension != "png") {
+                throw new \Exception("Image format is not supported! Must be jpg or png");
             }
         }
 
         $incident = new Incident($request->all());
         $incident->status = 'Pending';
 
-        if($incident->save()) {
-            // try {
-            // 	$client = new Client(config('app.wsServerAddr'));
-            // 	$client->send(json_encode(array("data" => Reports::countiesWithIncidents())));
-            // } catch (WebSocket\Exception $e) {
-
-            // }
-
-        	if($file != null) {
-            	try {
-                	$imagePath = base_path().'/public/assets/media/images/';
-                	$imageName = 'image_incident_'.$c=$incident->id.'.'.$extension;
-                	$file->move($imagePath, $imageName);
-                	$manager = new ImageManager();
-                	$image = $manager->make($imagePath.$imageName);
-                	$image->resize(1024, 1024*$image->height()/$image->width());
-                	$image->save($imagePath.$imageName);
-                	$incident->image_url = 'http://'.substr($request->root(), 7).'/assets/media/images/'.$imageName;
-                	$incident->save();
-            	} catch(Exception $e) {
-            	    throw new Exception("Image could not be saved!");
-            	}
-        	}
-            return $this->response->created();
-        }
-        else
+        if (!$incident->save()) {
             return $this->response->error('could_not_create_incident', 500);
+        }
+
+        if ($file != null) {
+            try {
+                $imagePath = IncidentImageUpload::imageBasePath();
+                $imageName = IncidentImageUpload::imageName($incident->id, $extension);
+                $file->move($imagePath, $imageName);
+                $incident->image_url = IncidentImageUpload::saveImage($imageName);
+                $incident->save();
+            } catch (Exception $e) {
+                throw new Exception("Image could not be saved!");
+            }
+        }
+        return $this->response->created();
     }
 
     public function approve($incidentId)
@@ -289,8 +274,8 @@ class IncidentController extends Controller
             return $this->response->error('could_not_delete_incident', 500);
     }
 
-    private function verifyCaptcha($token) {
-
+    private function verifyCaptcha($token)
+    {
         if (!$token) {
             return false;
         }
@@ -303,12 +288,12 @@ class IncidentController extends Controller
 
         $options = array(
             'http' => array(
-                'header'  => "Content-type: application/x-www-form-urlencoded\r\n",
-                'method'  => 'POST',
+                'header' => "Content-type: application/x-www-form-urlencoded\r\n",
+                'method' => 'POST',
                 'content' => http_build_query($data)
             )
         );
-        $context  = stream_context_create($options);
+        $context = stream_context_create($options);
         $result = file_get_contents($url, false, $context);
         $result = json_decode($result);
 
