@@ -1,5 +1,5 @@
 <?php
-	
+
 $api = app('Dingo\Api\Routing\Router');
 
 $api->version('v1',  ['middleware' => 'cors'], function ($api) {
@@ -18,6 +18,10 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 		$api->post('incidents/{incidentId}/approve', 'App\Api\V1\Controllers\IncidentController@approve');
 		$api->post('incidents/{incidentId}/reject', 'App\Api\V1\Controllers\IncidentController@reject');
 		$api->delete('incidents/{incidentId}', 'App\Api\V1\Controllers\IncidentController@destroy');
+        //Pages routes
+        $api->resource('page', 'App\Api\V1\Controllers\PageController');
+        $api->post('page/{id}/approve', 'App\Api\V1\Controllers\PageController@approve');
+        $api->post('page/{id}/reject', 'App\Api\V1\Controllers\PageController@reject');
 	});
 
 	//Public routes
@@ -31,13 +35,13 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 	$api->get('incidents', 'App\Api\V1\Controllers\IncidentController@index');
 	$api->get('incidents/types', 'App\Api\V1\Controllers\IncidentTypeController@index');
 	$api->get('incidents/{incidentId}', 'App\Api\V1\Controllers\IncidentController@show');
-	
+
 	// Create incident
 	$api->post('incidents', 'App\Api\V1\Controllers\IncidentController@store');
-	
+
 	//$api->get('precincts', 'App\Api\V1\Controllers\PrecinctController@list');
 	$api->get('{cityId}/precincts', 'App\Api\V1\Controllers\PrecinctController@listPerCity');
-	
+
 	//Reports overview
 	$api->get('reports', 'App\Api\V1\Controllers\ReportsController@index');
 
@@ -51,4 +55,7 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
 	$api->get('statistici/sesizari-numarare-judete',   'App\Api\V1\Controllers\ReportingController@incidentsCountingPerCounty');
 	$api->get('statistici/sesizari-numarare-sectii',   'App\Api\V1\Controllers\ReportingController@incidentsCountingPerPrecinct');
 	$api->get('statistici/sesizari-tip-judete',   	   'App\Api\V1\Controllers\ReportingController@incidentTypesPerCountyTops');
+    $api->resource('forms',                             'App\Api\V1\Controllers\FormController');
+    $api->post('forms/{id}/activate',                   'App\Api\V1\Controllers\FormController@activate');
+    $api->post('forms/{id}/deactivate',                 'App\Api\V1\Controllers\FormController@deactivate');
 });

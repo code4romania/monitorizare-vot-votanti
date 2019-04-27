@@ -179,18 +179,5 @@ class ReportingController extends Controller
 		$type = IncidentType::where('code', $typeCode)->first();
 		return $type->id;
 	}
-	
-	private function getPaginator($incidents)
-	{
-		return [
-				'total' => $incidents->total(),
-				'currentPage' => $incidents->currentPage(),
-				'lastPage' => $incidents->lastPage(),
-				'limit' => $incidents->perPage(),
-				'previousPage' => $incidents->previousPageUrl(),
-				'nextPage' => $incidents->nextPageUrl()
-		];
-	}
-	
 }
     
