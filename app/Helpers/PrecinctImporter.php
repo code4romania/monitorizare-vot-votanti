@@ -80,12 +80,6 @@ class PrecinctImporter
 
     }
 
-    private function extractData(){
-
-
-        return null;
-    }
-
     private function importPrecinctsFromArray($data)
     {
         foreach ($data as $rawPrecinctData) {
