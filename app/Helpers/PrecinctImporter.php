@@ -8,8 +8,6 @@ use Illuminate\Support\Facades\File;
 
 class PrecinctImporter
 {
-    const IMPORT_BATCH_SIZE = 5000;
-
 
     public function importFromFile(\Symfony\Component\HttpFoundation\File\File $file, bool $deleteFileAfter)
     {
