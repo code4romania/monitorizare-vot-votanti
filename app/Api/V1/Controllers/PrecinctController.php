@@ -218,7 +218,20 @@ class PrecinctController extends Controller
      *   description="",
      *   operationId="showAllPrecincts",
      *   produces={"application/json"},
-     *
+     *   @SWG\Parameter(
+     *     in="query",
+     *     name="limit",
+     *     type="integer",
+     *     description="pagination limit",
+     *     required=false
+     *   ),
+     *     @SWG\Parameter(
+     *     in="query",
+     *     name="page",
+     *     type="integer",
+     *     description="current page",
+     *     required=false
+     *   ),
      *   @SWG\Response(
      *     response=200,
      *     description="successful operation"
@@ -236,7 +249,7 @@ class PrecinctController extends Controller
     }
 
     /**
-     * @SWG\POST(path="/import/precincts",
+     * @SWG\POST(path="/apiimport/precincts",
      *   tags={"Precincts"},
      *   summary="Import precincts",
      *   description="Allows the import of either csv or xlsx imports",
