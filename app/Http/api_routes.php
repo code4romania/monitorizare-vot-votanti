@@ -22,6 +22,11 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
         $api->resource('page', 'App\Api\V1\Controllers\PageController');
         $api->post('page/{id}/approve', 'App\Api\V1\Controllers\PageController@approve');
         $api->post('page/{id}/reject', 'App\Api\V1\Controllers\PageController@reject');
+        //Incident types routes
+        $api->post('incidents/types/', 'App\Api\V1\Controllers\IncidentTypeController@store');
+        $api->get('incidents/types/{incidentTypeId}', 'App\Api\V1\Controllers\IncidentTypeController@show');
+        $api->put('incidents/types/{incidentTypeId}', 'App\Api\V1\Controllers\IncidentTypeController@update');
+        $api->delete('incidents/types/{incidentTypeId}', 'App\Api\V1\Controllers\IncidentTypeController@destroy');
 	});
 
 	//Public routes
