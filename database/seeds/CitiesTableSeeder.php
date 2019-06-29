@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\City;
-use App\Helpers\CvsHandler;
+use App\Helpers\CsvHandler;
 use App\Helpers\CitiesXMLParser;
 
 class CitiesTableSeeder extends Seeder
@@ -16,7 +16,7 @@ class CitiesTableSeeder extends Seeder
     public function run()
     {
         $citites = $this->getCities();
-        $counties = CvsHandler::convertToArray('resources/files/county/county.csv');
+        $counties = CsvHandler::convertToArray('resources/files/county/county.csv');
 
         $currentCity = '';
         $index = 0;

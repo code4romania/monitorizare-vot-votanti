@@ -73,6 +73,14 @@ Sometimes these folders need to be created manually if the user doesn't have the
 
 Access [http://localhost:8000](http://localhost:8000) or [http://localhost:8000/api/check](http://localhost:8000/api/check) in the browser to test the project. For documentation you can access [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 
+To generate the swagger files
+```bash
+php artisan l5-swagger:publish
+php artisan l5-swagger:generate
+```
+
+Once the files are generated you can access the swagger documentation at:
+[http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 ## Project structure
 
 * Controllers in /app/Api/V1/Controllers

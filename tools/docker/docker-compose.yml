@@ -1,0 +1,52 @@
+version: '3'
+services:
+  monitorizare-vot-votanti-api-web:
+    container_name: monitorizare-vot-votanti-api-web
+    build: web
+    hostname: "monitorizare-vot-votanti-api.local.dev"
+    ports:
+      - "3200:80"
+    volumes:
+      - ../../:/var/www/html
+    depends_on:
+      - monitorizare-vot-votanti-api-database
+    extra_hosts:
+      - "monitorizare-vot-db:192.168.110.20"
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/public
+    networks:
+      monitorizare-vot-votanti-api-net:
+        ipv4_address: 192.168.110.10
+
+  monitorizare-vot-votanti-api-database:
+    hostname: "monitorizare-vot-votanti-api-database.local.dev"
+    container_name: monitorizare-vot-votanti-api-database
+    image: mysql:5.7
+    env_file:
+      - mysql.env
+    networks:
+      monitorizare-vot-votanti-api-net:
+        ipv4_address: 192.168.110.20
+
+  monitorizare-vot-votanti-api-phpmyadmin:
+    hostname: "monitorizare-vot-votanti-api-pma.local.dev"
+    container_name: monitorizare-vot-votanti-api-db
+    ports:
+      - "3201:80"
+    image: phpmyadmin/phpmyadmin
+    env_file:
+      - pma.env
+    restart: always
+    depends_on:
+      -  monitorizare-vot-votanti-api-database
+    networks:
+      monitorizare-vot-votanti-api-net:
+        ipv4_address: 192.168.110.30
+
+networks:
+  monitorizare-vot-votanti-api-net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 192.168.110.0/24
