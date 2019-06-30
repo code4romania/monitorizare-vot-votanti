@@ -13,6 +13,7 @@ use Dingo\Api\Routing\Helpers;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use SplFileObject;
 
 class PrecinctController extends Controller
 {
@@ -249,7 +250,7 @@ class PrecinctController extends Controller
     }
 
     /**
-     * @SWG\POST(path="/apiimport/precincts",
+     * @SWG\POST(path="/api/import/precincts",
      *   tags={"Precincts"},
      *   summary="Import precincts",
      *   description="Allows the import of either csv or xlsx imports",
@@ -282,12 +283,13 @@ class PrecinctController extends Controller
         }
 
         set_time_limit(180);
-        $file = $request->file(self::IMPORT_KEY_NAME);
+        $requestFile = $request->file(self::IMPORT_KEY_NAME);
 
-        $newFile = $file->move("precinct_imports", $file->getClientOriginalName());
+        $storedFile = $requestFile->move("precinct_imports", $requestFile->getClientOriginalName());
+        $file = new SplFileObject($storedFile->getRealPath());
         $importer = new PrecinctImporter();
         try {
-            $importer->importFromFile($newFile, true);
+            $importer->importFromFile($file, true);
         } catch (\Exception $ex) {
             $this->response->error($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

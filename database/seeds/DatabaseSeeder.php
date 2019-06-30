@@ -1,5 +1,6 @@
 <?php
 
+use App\Precinct;
 use Illuminate\Database\Seeder;
 
 use App\IncidentType;
@@ -22,7 +23,8 @@ class DatabaseSeeder extends Seeder
         Incident::truncate();
         City::truncate();
         County::truncate();
-        User::truncate();
+        Precinct::truncate();
+        User::getQuery()->delete();
         Eloquent::unguard();
 
         $this->call(CountiesTableSeeder::class);

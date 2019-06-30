@@ -1,40 +1,43 @@
 <?php
 
 namespace App\Helpers;
+
 use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
 use App\City;
 use App\Precinct;
-use Illuminate\Support\Facades\File;
+use SplFileObject;
 
 class PrecinctImporter
 {
 
-    public function importFromFile(\Symfony\Component\HttpFoundation\File\File $file, bool $deleteFileAfter)
+    public function importFromFile(SplFileObject $file, bool $deleteFileAfter)
     {
         $fileExtension = $file->getExtension();
         $isCsv = $fileExtension == "csv";
         $isXlsx = $fileExtension == "xls" || $fileExtension == "xlsx";
-        $data = array();
+        $data = [];
 
-        if ($isCsv){
+        if ($isCsv) {
             $data = $this->readFromCSV($file);
-        } else if ($isXlsx){
+        } else if ($isXlsx) {
             $data = $this->readFromXLSX($file);
         }
 
         $this->importPrecinctsFromArray($data);
         if ($deleteFileAfter) {
-            File::delete($file);
+            $filePath = $file->getRealPath();
+            $file = null;
+            unlink($filePath);
         }
     }
 
-    private function readFromCSV(\Symfony\Component\HttpFoundation\File\File $file)
+    private function readFromCSV(SplFileObject $file)
     {
 
-        $data = CsvHandler::convertToArray($file->getPath().'/'.$file->getFilename());
+        $data = CsvHandler::convertFileToArray($file);
         $precinctData = array();
-        foreach ($data as $rowIndex => $rawPrecinctData){
-            if ($rowIndex > 0){
+        foreach ($data as $rowIndex => $rawPrecinctData) {
+            if ($rowIndex > 0) {
                 $precinctData[] = [
                     'city_id' => intval($rawPrecinctData[0]),
                     'siruta_code' => intval($rawPrecinctData[1]),
@@ -49,21 +52,21 @@ class PrecinctImporter
 
     }
 
-    private function readFromXLSX($file)
+    private function readFromXLSX(SplFileObject $file)
     {
-        $workbook = SpreadsheetParser::open($file);
+        $workbook = SpreadsheetParser::open($file->getRealPath());
         $cityId = null;
 
         $precinctId = -1;
-        $data = array();
+        $data = [];
         foreach ($workbook->createRowIterator(0) as $rowIndex => $rowData) {
 
             if ($rowIndex > 2 && $rowData[0] != '') {
 
                 if (trim($rowData[1]) != '') {
-                    $cityId = $this->getCityId($rowData[1]);
+                    $cityId = $this->getCityId($rowData[1], $rowData[0]);
                 }
-                if($rowData[4] != $precinctId) {
+                if ($rowData[4] != $precinctId) {
                     $precinctId = $rowData[4];
                     $data[] = [
                         'city_id' => $cityId,
@@ -80,21 +83,27 @@ class PrecinctImporter
 
     }
 
-    private function importPrecinctsFromArray($data)
+    private function importPrecinctsFromArray(array $data)
     {
         foreach ($data as $rawPrecinctData) {
             $precinct = new Precinct($rawPrecinctData);
             $precinct->save();
         }
     }
-    private function getCityId($cityName)
+
+    private function getCityId(string $cityName, string $countyCode)
     {
-        $city = City::where('name', $cityName)->first();
+        $city = City::join(
+            'counties', 'counties.id', '=', 'cities.county_id'
+        )
+            ->where([
+                ['cities.name', "=", $cityName],
+                ["counties.code", "=", $countyCode]
+            ])->first();
         if ($city) {
             return $city->id;
         }
 
-        echo "City not found:" . $cityName . "\r\n";
         return 0;
     }
 }

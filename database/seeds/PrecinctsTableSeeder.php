@@ -3,11 +3,8 @@
 use App\Helpers\PrecinctImporter;
 use Illuminate\Database\Seeder;
 use App\County;
-use App\Helpers\CsvHandler;
 use App\Precinct;
 use App\City;
-
-use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
 
 class PrecinctsTableSeeder extends Seeder
 {
@@ -19,19 +16,19 @@ class PrecinctsTableSeeder extends Seeder
     public function run()
     {
 		DB::disableQueryLog(); //logs slow down inserts
-		$counties = CsvHandler::convertToArray('resources/files/county/county.csv');
 
-    	$this->parseRomaniaPrecincts('resources/files/precincts/Precincts.xlsx', $counties);
+    	$this->parseRomaniaPrecincts('resources/files/precincts/Precincts.xlsx');
    		$this->parseDiasporaPrecincts('resources/files/precincts/Diaspora.json');
     }
     
-    private function parseRomaniaPrecincts($file, $counties) {
+    private function parseRomaniaPrecincts($filePath) {
 
         $importer = new PrecinctImporter();
     	try {
+    	    $file = new SplFileObject($filePath);
     	    $importer->importFromFile($file, false);
     	}
-    	
+
     	catch(Exception $e) {
     		die('Error loading file "'.pathinfo($file, PATHINFO_BASENAME) . '": ' . $e->getMessage());
     	}
