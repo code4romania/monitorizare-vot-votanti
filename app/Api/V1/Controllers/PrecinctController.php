@@ -75,6 +75,7 @@ class PrecinctController extends Controller
      *     @SWG\Schema(ref="#/definitions/Precinct")
      *   ),
      *   @SWG\Response(response=400,  description="Invalid Precinct")
+     *   @SWG\Response(response=409,  description="Duplicate Precinct")
      * )
      */
     public function store(Request $request)
@@ -86,6 +87,17 @@ class PrecinctController extends Controller
         }
         try {
             $city = City::findOrFail($data['city_id']);
+            $precinct = Precinct::where(
+                [
+                    'precinct_no' => $data['precinct_no'],
+                    'city_id' => $data['city_id']
+                ]
+            )->first();
+            if ($precinct != null){
+                return response()->json([
+                    'error' => ['message' => 'A precinct with that number already exists in that city']
+                ], 409);
+            }
             $data['county_id'] = $city->county_id;
             $precinct = new Precinct($data);
             $precinct->save();
@@ -125,7 +137,8 @@ class PrecinctController extends Controller
      *     @SWG\Schema(ref="#/definitions/Precinct")
      *   ),
      *   @SWG\Response(response=400,  description="Invalid Precinct"),
-     *   @SWG\Response(response=404,  description="Invalid Precinct")
+     *   @SWG\Response(response=404,  description="Invalid Precinct"),
+     *   @SWG\Response(response=409,  description="Duplicate Precinct")
      * )
      */
     public function update(Request $request, int $id)
@@ -139,6 +152,17 @@ class PrecinctController extends Controller
 
         try {
             $precinct = Precinct::findOrFail($id);
+            $newPrecinct = Precinct::where(
+                [
+                    'precinct_no' => $data['precinct_no'],
+                    'city_id' => $data['city_id']
+                ]
+            )->first();
+            if ($newPrecinct != null && $newPrecinct->id != $precinct->id){
+                return response()->json([
+                    'error' => ['message' => 'A precinct with that number already exists in that city']
+                ], 409);
+            }
             $precinct->update($data);
             return response()->json([
                 'data' => $precinct->toArray()
@@ -275,7 +299,8 @@ class PrecinctController extends Controller
             'application/vnd.ms-excel',
             'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
             'text/csv',
-            'application/octet-stream'
+            'application/octet-stream',
+            'application/json'
         ];
 
         if (!$request->hasFile(self::IMPORT_KEY_NAME) || !in_array( $request->file(self::IMPORT_KEY_NAME)->getClientMimeType(),$acceptedMimeTypes)) {
@@ -293,9 +318,6 @@ class PrecinctController extends Controller
         } catch (\Exception $ex) {
             $this->response->error($ex->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
-
-
-
     }
 
 }

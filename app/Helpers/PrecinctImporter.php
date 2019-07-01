@@ -4,7 +4,10 @@ namespace App\Helpers;
 
 use Akeneo\Component\SpreadsheetParser\SpreadsheetParser;
 use App\City;
+use App\County;
 use App\Precinct;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Log;
 use SplFileObject;
 
 class PrecinctImporter
@@ -15,12 +18,15 @@ class PrecinctImporter
         $fileExtension = $file->getExtension();
         $isCsv = $fileExtension == "csv";
         $isXlsx = $fileExtension == "xls" || $fileExtension == "xlsx";
+        $isJson = $fileExtension == "json";
         $data = [];
 
         if ($isCsv) {
             $data = $this->readFromCSV($file);
         } else if ($isXlsx) {
             $data = $this->readFromXLSX($file);
+        } else if ($isJson) {
+            $data = $this->readFromJson($file);
         }
 
         $this->importPrecinctsFromArray($data);
@@ -66,7 +72,7 @@ class PrecinctImporter
                 if (trim($rowData[1]) != '') {
                     $cityId = $this->getCityId($rowData[1], $rowData[0]);
                 }
-                if ($rowData[4] != $precinctId) {
+                if ($rowData[4] != $precinctId && $cityId != 0) {
                     $precinctId = $rowData[4];
                     $data[] = [
                         'city_id' => $cityId,
@@ -83,11 +89,50 @@ class PrecinctImporter
 
     }
 
+    private function readFromJson(SplFileObject $file) {
+        //get Diaspora county ID
+        $county = County::where('code', 'DI')->first();
+        //get Diaspora city ID
+        $city = City::where('name', 'Disapora')->first();
+        $str = "";
+        while(!$file->eof()) {
+            $str .= $file->fgets();
+        }
+        $obj = json_decode($str);
+        $data = [];
+        foreach ($obj->markers as $marker) {
+            $data[] = [
+                'county_id' => $county->id,
+                'city_id' =>  $city ? $city->id : 1,
+                'siruta_code' =>  0,
+                'circ_no' =>  $marker->country_id,
+                'precinct_no' =>  $marker->n,
+                'headquarter' =>  $marker->m,
+                'address' =>  $marker->a
+            ];
+        }
+        return $data;
+    }
+
     private function importPrecinctsFromArray(array $data)
     {
         foreach ($data as $rawPrecinctData) {
-            $precinct = new Precinct($rawPrecinctData);
-            $precinct->save();
+            try{
+                $existingPrecinct = Precinct::where([
+                    'precinct_no' => $rawPrecinctData['precinct_no'],
+                    'city_id' => $rawPrecinctData['city_id']
+                ])->first();
+
+                if ($existingPrecinct != null){
+                    $existingPrecinct->update($rawPrecinctData);
+                } else {
+                    $precinct = new Precinct($rawPrecinctData);
+                    $precinct->save();
+                }
+            } catch (QueryException $ex){
+                Log::warning("Could not persist precinct \n $precinct");
+            }
+
         }
     }
 
@@ -103,7 +148,7 @@ class PrecinctImporter
         if ($city) {
             return $city->id;
         }
-
+        Log::warning("Could not find city with name $cityName and county with code $countyCode");
         return 0;
     }
 }

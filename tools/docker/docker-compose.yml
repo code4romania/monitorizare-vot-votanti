@@ -30,13 +30,12 @@ services:
 
   monitorizare-vot-votanti-api-phpmyadmin:
     hostname: "monitorizare-vot-votanti-api-pma.local.dev"
-    container_name: monitorizare-vot-votanti-api-db
+    container_name: monitorizare-vot-votanti-api-pma
     ports:
       - "3201:80"
     image: phpmyadmin/phpmyadmin
     env_file:
       - pma.env
-    restart: always
     depends_on:
       -  monitorizare-vot-votanti-api-database
     networks:
