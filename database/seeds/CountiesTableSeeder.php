@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\County;
-use App\Helpers\CvsHandler;
+use App\Helpers\CsvHandler;
 
 class CountiesTableSeeder extends Seeder
 {
@@ -28,7 +28,7 @@ class CountiesTableSeeder extends Seeder
 
     private function getCounties()
     {
-        $data = CvsHandler::convertToArray('resources/files/county/county.csv');
+        $data = CsvHandler::convertToArray('resources/files/county/county.csv');
         return $data;
     }
 }

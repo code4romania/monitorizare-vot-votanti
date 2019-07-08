@@ -24,6 +24,9 @@ $api->version('v1',  ['middleware' => 'cors'], function ($api) {
         $api->post('page/{id}/reject', 'App\Api\V1\Controllers\PageController@reject');
         //Incident types routes
         $api->resource('incidents/types', 'App\Api\V1\Controllers\IncidentTypeController', ['only' => ['show', 'update', 'store', 'destroy']]);
+        //Precinct routes
+        $api->post('import/precincts', 'App\Api\V1\Controllers\PrecinctController@import');
+        $api->resource('precinct', 'App\Api\V1\Controllers\PrecinctController');
 	});
 
 	//Public routes

@@ -28,7 +28,7 @@
             "database"
         ],
         "files": [
-            "app/Helpers/CvsHandler.php"
+            "app/Helpers/CsvHandler.php"
         ],
         "psr-4": {
             "App\\": "app/"
