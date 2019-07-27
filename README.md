@@ -51,6 +51,18 @@ Other MV related repos:
 
 ## Deployment
 
+### Services
+In `/tools/docker` you can find a docker compose file that starts a php server with apache, a mysql server and a phpmyadmin instance.
+You will need to have **docker** and **docker-compose**(https://docs.docker.com/compose/) installed.
+
+To start the services, go to the tools/docker folder and run:
+
+```bash
+docker-compose up -d
+```
+
+### Project setup
+
 ```bash
 composer install
 -- create database and add the database server configuration to .env file
@@ -82,15 +94,7 @@ php artisan l5-swagger:generate
 Once the files are generated you can access the swagger documentation at:
 [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 
-### Docker setup
-In /tools/docker you can find a docker compose file that starts a php server with apache, a mysql server and a phpmyadmin instance.
-You will need to have **docker** and **docker-compose**(https://docs.docker.com/compose/) installed.
-
-To start the services, go to the tools/docker folder and run:
-
-```bash
-docker-compose up -d
-```
+### Testing it works
 
 Once everything is built and started you can access the webservice at http://localhost:3200 and the phpmyadmin at http://localhost:3201 .
 If you are running Linux then you can use the direct IPs as well ( this does not work for Mac or Windows ).
@@ -102,7 +106,7 @@ docker ps
 
 The containers can be accessed by:
 ```bash
-docker exec -it <container_name> bash"
+docker exec -it <container_name> bash
 ```
 
 You can run composer and php commands from inside the container.
