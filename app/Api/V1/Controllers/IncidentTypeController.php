@@ -93,7 +93,8 @@ class IncidentTypeController extends Controller
      *              ),
      *              @SWG\Property(
      *                  property="status",
-     *                  type="string"
+     *                  type="string",
+	 *                  example="['Active', 'Inactive']"
      *              )
      *          ),
      *     ),
@@ -211,7 +212,8 @@ class IncidentTypeController extends Controller
      *              ),
      *              @SWG\Property(
      *                  property="status",
-     *                  type="string"
+     *                  type="string",
+	 *                  example="['Active', 'Inactive']"
      *              )
      *          ),
      *     ),
