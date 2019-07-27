@@ -16,6 +16,8 @@ class UpdatePagesTable extends Migration
 
         Schema::table('pages', function (Blueprint $table) {
             $table->string('logo');
+            $table->unsignedInteger('parent_id');
+            $table->foreign('parent_id')->references('id')->on('pages');
         });
     }
 
@@ -30,6 +32,8 @@ class UpdatePagesTable extends Migration
 
         Schema::table('pages', function (Blueprint $table) {
             $table->dropColumn('logo');
+            $table->dropForeign('pages_parent_id_foreign');
+            $table->dropColumn('parent_id');
         });
     }
 }
