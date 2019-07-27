@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        IncidentType::truncate();
+        //IncidentType::truncate();
         Incident::truncate();
         City::truncate();
         County::truncate();
