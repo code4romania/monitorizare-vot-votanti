@@ -52,7 +52,7 @@ Other MV related repos:
 ## Deployment
 
 ### Services
-In `/tools/docker` you can find a docker compose file that starts a php server with apache, a mysql server and a phpmyadmin instance.
+In /tools/docker you can find a docker compose file that starts a php server with apache, a mysql server and a phpmyadmin instance.
 You will need to have **docker** and **docker-compose**(https://docs.docker.com/compose/) installed.
 
 To start the services, go to the tools/docker folder and run:
@@ -63,28 +63,47 @@ docker-compose up -d
 
 ### Project setup
 
+* Install prerequisites
 ```bash
 composer install
--- create database and add the database server configuration to .env file
+```
+
+* Configurations
+
+Initial `.env` setup
+```bash
+cp .env.docker .env
+```
+
+Add new local keys
+```bash
 php artisan key:generate //Not sure if really neccesary
 php artisan jwt:generate
+```
+
+Run DB scrips
+```bash
 php artisan migrate --seed
 ```
 
-Run the local server with
+* Run the local server with
 
 ```bash
 php artisan serve
 ```
 
-Sometimes these folders need to be created manually if the user doesn't have the rights to do so:
-* /storage/framework/cache
-* /storage/framework/sessions
-* /storage/framework/views
-* /storage/logs
+* Test your storage folders structure
+
+    Sometimes these folders need to be created manually if the user doesn't have the rights to do so:
+    * /storage/framework/cache
+    * /storage/framework/sessions
+    * /storage/framework/views
+    * /storage/logs
 
 Access [http://localhost:8000](http://localhost:8000) or [http://localhost:8000/api/check](http://localhost:8000/api/check) in the browser to test the project. For documentation you can access [http://localhost:8000/api/documentation](http://localhost:8000/api/documentation)
 
+* (Optional) Swagger
+ 
 To generate the swagger files
 ```bash
 php artisan l5-swagger:publish
