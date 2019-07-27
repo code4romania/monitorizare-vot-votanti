@@ -9,7 +9,7 @@ class Page extends Model
     const ACTIVE = 'Active';
     const INACTIVE = 'Inactive';
 
-    protected $fillable = ['title', 'status', 'description', 'user_id'];
+    protected $fillable = ['title', 'status', 'content', 'logo', 'user_id', 'parent_id'];
 
     public function user()
     {

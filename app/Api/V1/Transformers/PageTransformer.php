@@ -10,7 +10,8 @@ class PageTransformer extends Transformer
             'id' => $item['id'],
             'title' => $item['title'],
             'status' => $item['status'],
-            'description' => $item['description'],
+            'content' => $item['content'],
+            'logo' => $item['logo'],
             'lastUpdate' => $item['updated_at']->toDateTimeString(),
         ];
     }
