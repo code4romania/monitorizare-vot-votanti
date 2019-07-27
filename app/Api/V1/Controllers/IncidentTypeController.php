@@ -93,8 +93,7 @@ class IncidentTypeController extends Controller
      *              ),
      *              @SWG\Property(
      *                  property="status",
-     *                  type="string",
-     *                  enum="['Active', 'Inactive']"
+     *                  type="string"
      *              )
      *          ),
      *     ),
@@ -212,8 +211,7 @@ class IncidentTypeController extends Controller
      *              ),
      *              @SWG\Property(
      *                  property="status",
-     *                  type="string",
-     *                  enum="['Active', 'Inactive']"
+     *                  type="string"
      *              )
      *          ),
      *     ),
