@@ -130,7 +130,9 @@ class PrecinctImporter
                     $precinct->save();
                 }
             } catch (QueryException $ex){
-                Log::warning("Could not persist precinct \n $precinct");
+                $precinctNo = isset($rawPrecinctData['precinct_no']) ? $rawPrecinctData['precinct_no'] : "missing";
+                $cityId = isset($rawPrecinctData['city_id']) ? $rawPrecinctData['city_id'] : "missing";
+                Log::warning("Could not persist precinct with precinct_no={$precinctNo} and city_id={$cityId}");
             }
 
         }
