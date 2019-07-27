@@ -1,0 +1,184 @@
+id,title,status,content,logo,parent_id
+1,Adaugă o sesizare,Active," <h1>
+            Cum fac o sesizare?
+          </h1>
+          <p>
+            Vrei să trimiți o sesizare, dar nu ești sigur dacă s-a încălcat o
+            regulă? Verifică mai jos, în ghidul alegătorului, care sunt regulile
+            de vot la referendum, pentru a transmite informații corecte și
+            utile.<br />
+
+            Pentru a ne asigura ca sesizările privesc exact subiectul
+            referendumului pentru familie din 2018, acestea vor fi postate pe
+            site după o verificare făcută de echipa proiectului.
+          </p>",,0
+2,Reguli Vot,Inactive,"          <h1>
+            Sesizează orice incident
+          </h1>
+          <p>
+            Pe 26 mai 2019 au loc alegerile europarlamentare și referendumul național pe justiție. Dacă ai sesizat
+            nereguli în timpul campaniei sau în ziua votului postează aici. Ai văzut mesaje care instigă la ură, ai
+            văzut campanii derulate în mod ilegal sau alte comunicări care contravin principiilor democratice, probleme
+            în secția în care ai votat etc? Trimite o sesizare folosind formularul de mai jos.
+          </p>
+          <CallToAction
+            label=""Vezi toate sesizările""
+            icon={<ArrowForward />}
+            primary
+          />",,0
+3,Informații generale,Active,"<h1>Informații generale</h1>
+      <h2>Cine are dreptul de a vota la referendumul pentru familie 2018?</h2>
+      <p>
+        Au dreptul de a participa la referendum toți cetățenii români care au împlinit vârsta de 18 ani până în ziua referendumului inclusiv, cu excepția debililor sau a alienaților mintal puși sub interdicție, precum și a persoanelor condamnate prin hotărâre judecătorească definitivă la pierderea drepturilor electorale.<br/>
+        Art 4 din Legea 3/2000
+      </p>",info,2
+4,Unde votăm,Active,"<h1>Unde votăm</h1>
+      <h2>Dacă vă aflați pe teritoriul României în timpul referendumului pentru familie 2018:</h2>
+      <ul>
+        <li>Veţi vota la secția unde sunteţi arondat, pe care o puteți afla pe de pagina web <a href=""http://www.registrulelectoral.ro"" target=""_blank"">www.registrulelectoral.ro</a>. Dacă nu vă aflaţi în localitatea de domiciliu în ziua alegerilor, puteți vota la orice secție, pe lista suplimentară.</li>
+        <li>Cetățeanul care, în ziua referendumului național, se află într-o altă localitate decât cea în care este înscris în lista electorală poate să își exercite dreptul de vot în localitatea respectivă, la orice secție de votare, urmând a fi înscris într-o listă suplimentară de către președintele biroului electoral al secției de votare, pe baza actului de identitate sau a adeverinței care ține loc de act de identitate.</li>
+      </ul>
+      <p>
+        Art 21, Legea 3/2000<br/>
+        Dacă sunteţi omis/ă din lista permanentă, veţi fi înscris/ă pe lista suplimentară.<br/>
+        Lista cu secțiile de votare poate fi <a href=""http://www.roaep.ro/logistica/geografie-electorala/registrul-sectiilor-de-votare/"" target=""_blank"">găsită aici.</a>
+      </p>
+      <h2>Dacă vă aflați în diaspora în timpul referendumului pentru familie 2018:</h2>
+      <p>
+        Puteți vota la oricare din secțiile de votare deschise pe lângă ambasade, consulate sau institute culturale, pe liste suplimentare. Votul nu este condiționat de înscrierea în Registrul electoral și nu vor exista liste permanente. Conform OUG 86/2018 se pot înființa și alte secții de votare, cu acordul autorităților străine.
+      </p>
+      <p>
+        Harta secțiilor de votare din străinătate poate fi <a href=""http://www.mae.ro/locatiile_sec%C5%A3iilor_de_votare"" target=""_blank"">consultată aici</a>.
+      </p>",location,2
+5,Programul de votare,Active,"<h1>Programul de votare</h1>
+      <p>Referendumul pentru familie se desfășoară pe parcursul a două zile - pe 6 și 7 octombrie 2018, iar secțiile de votare sunt deschise între orele 7:00 și 21:00. La ora 21:00 mai pot vota doar alegătorii care se află în sala unde se votează.</p>",clock,2
+6,Buletinul de vot,Active,"<h2>Cum arată un buletin de vot nul</h2>
+      <p>Sunt nule buletinele de vot care:</p>
+      <ul>
+        <li>nu poartă ștampila de control a secției de votare</li>
+        <li>buletinele de un alt model decât cel legal aprobat,</li>
+        <li>cele pe care ștampila „Votat” a fost aplicată în ambele pătrate sau nu a fost aplicată pe nici unul dintre ele.</li>
+      </ul>
+      <p>
+        Dacă ștampila depășește laturile pătratului, însă opțiunea este evidentă, buletinul nu va fi socotit nul.<br/>
+        Buletinele nule nu intră în calculul voturilor valabil exprimate.
+      </p>",system,2
+7,Votarea,Active,"<h2>Cum votezi?</h2>
+      <ul>
+        <li>În secția de votare vei prezenta actul de identitate sau adeverința înlocuitoare membrilor secției de votare</li>
+        <li>După verificarea prezenței pe lista permanentă sau înscrierea în lista suplimentară va înmâna un buletin de vot</li>
+        <li>Înainte de a intra în cabina de vot, asiguraţi-vă că pe spatele buletinului de vot este aplicată ștampila de control a secției de votare. Dacă aceasta lipsește, votul va fi declarat nul!</li>
+        <li>Dacă este aglomerație și credeţi că secretul votului dumneavoastră poate fi violat, mai bine mai așteptaţi sau înștiințaţi președintele secției de votare. Accesul alegătorilor în sala de votare trebuie să aibă loc în serii corespunzătoare numărului cabinelor.</li>
+        <li>Aplicaţi ştampila cu menţiunea “VOTAT” înăuntrul unuia dintre cele 2 patrulatere</li>
+        <li>Îndoiţi buletinul, astfel încât pagina goală care poartă ştampila de control a secției de votare [vezi model] să rămână în afară, și introduceţi-l apoi în urnă astfel încât să nu se deschidă; îndoirea greşită a buletinului de vot nu atrage nulitatea votului, dacă secretul votului este asigurat.</li>
+        <li>Restituiţi ștampila și primiţi înapoi actul de identitate, pe care trebuie să fie aplicată ştampila cu menţiunea “VOTAT” (buletine) sau un timbru autocolant (cărțile de identitate) – <a href=""http://www.roaep.ro/legislatie/wp-content/uploads/2018/09/Hot_AEP_441.pdf"" target=""_blank"">vezi aici modelul timbrului</a></li>
+      </ul>
+      <p>
+        Art 37 din Legea 3/2000<br/>
+        Alegătorul care din motive temeinice nu poate vota singur poate fi însoțit în cabina de vot. Însoțitorul nu ar trebuie să fie din rândul persoanelor acreditate, al membrilor biroului electoral al secţiei de votare sau al candidaţilor.<br/>
+        Art 39 (2) din Legea 3/2000
+      </p>
+      <h2>Rețineți că:</h2>
+      <ul>
+        <li>Preşedintele biroului electoral al secţiei de votare este obligat să ia măsurile necesare pentru ca alegerile să decurgă în bune condiţii. Atribuţiile acestuia, în această privinţă, se întind și în afara localului de vot, în curtea acestuia, la intrările în curte, în jurul localului de vot, precum și pe străzi și în piețe publice, până la o distanță de 500 de metri – Art 33 (2)</li>
+        <li>Pentru motive întemeiate votarea se poate suspenda la decizia preşedintelui BESV. Suspendarea nu poate depăşi o oră în total şi trebuie afişată pe uşa secţiei de votare imediat. În timpul suspendării urnele de votare, ștampilele, buletinele de vot și toate lucrările biroului electoral vor rămâne sub pază permanentă. Art 38</li>
+        <li>În afară de membrii biroului electoral al secției de votare și de delegații acreditați de Biroul Electoral Central nici o altă persoană nu poate staționa în locurile publice din zona de votare sau în localul de vot peste timpul necesar pentru efectuarea operațiunii de votare. – Art 33 (3)</li>
+        <li>Comercializarea şi consumul băuturilor alcoolice în jurul secției de votare sunt interzise</li>
+        <li>Campania în ziua referendumului este interzisă sub orice formă, în special în secția de votare. Dacă găsiţi afișe electorale în secția de votare sau pe clădirea unde este amplasată, raportaţi președintelui biroului electoral al secției de votare. Acesta dispune îndepărtarea materialelor de propagandă electorală de orice tip din şi de pe clădirea sediului secţiei de votare.</li>
+        <li>Votul este secret; nu dezvăluţi cu cine aţi votat și nici nu permiteţi nimănui să violeze secretul opțiunii dumneavoastră. Nu fotografiaţi buletinul de vot și evitaţi fotografierea sau filmarea în secția de votare.</li>
+      </ul>	",vote,2
+8,Urna specială,Active,"<h1>Solicitarea urnei speciale</h1>
+      <p>
+        Alegătorii care nu se pot deplasa la secția de votare din cauză de boală sau invaliditate pot solicita urna specială (mobilă) de la secţia de votare cea mai apropiată de locul în care se află în ziua alegerilor printr-o cerere scrisă însoțită de documente justificative. În ziua alegerilor, o echipă formată din doi membri ai biroului electoral se va deplasa sub paza personalului MAI la locul unde se află alegătorul, cu urna specială și materialele necesare votării. Fiecare secție de votare are o singură urnă specială, care trebuie să fie la ora 21:00 înapoi la secția de votare. Alegătorii care nu se pot deplasa la sediul secţiei de votare pot trimite cererile scrise prin intermediul altor persoane sau prin intermediul personalului de specialitate din unităţile medicale unde se află internaţi.
+      </p>
+      <p>
+        Având în vedere că legea nu specifică clar termenele limită pentru depunerea cererilor pentru urna specială, vă sfătuim să le depuneți pe 5 octombrie, seara, între 18 și 20, când membrii biroului electoral al secției de votare se întrunesc la sediul acesteia. Din experiențele trecute, unii președinți de secții de votare nu acceptă cereri în ziua votului.
+      </p>
+      <p>
+        Art 31 (4) din Legea 3/2000<br/>
+        Pentru persoanele netransportabile din cauză de boală sau invaliditate, la cererea celor aflați în această situație sau la cererea organelor de conducere ale instituțiilor sanitare sau de ocrotiri sociale, în care cei netransportabili se află internați, președintele biroului electoral al secției de votare desemnează din cadrul biroului un număr de membri care se deplasează cu o urnă specială și cu materialul necesar votării la locul unde se află cel în cauză, pentru a se efectua votarea.<br/>
+        Art 40 din Legea 3/2000
+      </p>",box,2
+9,Documente necesare,Active,"<h2>De ce documente am nevoie ca sa pot vota</h2>
+      <p>În ţară, alegătorii votează în baza</p>
+      <ul>
+        <li>cărţii de identitate</li>
+        <li>a cărţii de identitate provizorie</li>
+        <li>buletinului de identitate.</li>
+        <li>nu se poate vota cu pașaportul în țară</li>
+        <li>Elevii din şcolile militare votează în baza carnetului de serviciu militar.</li>
+      </ul>
+      <p>
+        În străinătate:
+      </p>
+      <ul>
+        <li>Cetățenii români cu domiciul în străinătate votează pe baza pașaportului simplu, cu mențiunea privind stabilirea domiciului în străinătate</li>
+        <li>Cetățenii români cu domiciul în România votează pe baza paşaportului simplu, a paşaportului de serviciu, a paşaportului diplomatic sau a cărţii de identitate</li>
+      </ul>",building,2
+10,Tipuri de infracțiuni,Active,"<p>În timpul campaniei pentru referendum, probabil cea mai frecventă problemă întâlnită va fi cea legată de utilizarea unor mesaje instigatoare la ură sau care promovează valori care încalcă principiile democrației și drepturile omului. Dacă auzi de astfel de incidente, de campanie în școli sau în instituții publice, de presiuni ale angajatorilor sau ale autorităților locale, te rugăm să ne informezi cât mai rapid. Problemele legate de campanie le poți reclama la birourile electorale de circumscripție județeană.</p>
+      <h2>Care sunt cele mai frecvente nereguli care pot apărea pe parcursul votului la referendum: Presiuni ale administrației locale sau ale altor instituții / aglomerație la secția de votare</h2>
+      <ul>
+        <li>Prezenţa reprezentanţilor poliţiei sau autorităţilor locale în vecinătatea secţiei de votare poate fi un instrument de intimidare, deoarece poate sugera că autorităţile monitorizează prezentarea sau neprezentarea alegătorilor la vot.</li>
+        <li>Acţiuni inoportune din partea forţelor de ordine şi/sau poliţiei, ca de exemplu notarea sau raportarea prin telefon a datelor privind prezenţa la vot sau rezultatelor.</li>
+        <li>Prezenţa unor grupuri numeroase de alegători în vecinătatea secţiilor de votare poate indica faptul că participarea acestora la vot este coordonată şi/sau nu rezultă din voinţa proprie;</li>
+      </ul>
+      <h2>Indicii pentru potențiale fraude/abuzuri</h2>
+      <ul>
+        <li>Votarea în grup, votul multiplu</li>
+        <li>Introducerea în urnă a mai multor buletine de vot decât cele la care au dreptul alegătorii</li>
+        <li>Buletine de vot dinainte marcate</li>
+        <li>Invalidarea arbitrară sau inconsecventă a buletinelor de vot</li>
+        <li>Pierderea unor buletine sau urne de vot</li>
+        <li>Utilizarea neregulamentară sau abuzivă a urnelor mobile; număr semnificativ de cereri privind urna mobilă; presiuni privind votul cu urna mobilă în spitale sau închisori</li>
+        <li>Cazurile în care secretul votului nu este asigurat, cabine de vot deschise</li>
+        <li>Limitarea dreptului alegătorilor de a-şi exprima votul din motive nejustificate</li>
+        <li>Înlocuirea urnei de vot cu o altă urnă de vot</li>
+        <li>Numărarea voturilor sau înregistrarea rezultatelor intenţionat incorectă</li>
+        <li>Adăugarea unor buletine de vot după deschiderea urnei de vot</li>
+        <li>Procesele verbale ce conţin rezultatele referendumului nu sunt completate la secţia de votare sau sunt completate cu creionul şi nu cu cerneală</li>
+        <li>Falsificarea sau înlocuirea proceselor verbale</li>
+      </ul>
+      <h2>Listele electorale</h2>
+      <ul>
+        <li>Înscrieri fictive în listele suplimentare sau înscrierea unui număr anormal de mare de persoane</li>
+        <li>Inadvertenţe în listele de alegători</li>
+      </ul>
+      <h2>Legate de secția de votare/ziua votului</h2>
+      <ul>
+        <li>Deschiderea cu întârziere a secţiilor de votare, întârzieri excesive în administrarea votării</li>
+        <li>Absenţa materialelor electorale necesare (tuș, ștampile, urna mobilă, cabine de vot etc)</li>
+        <li>Urnă nesigilată sau sigilată necorespunzător (nu există un model standard pentru sigiliu, deci fiecare secție de votare are propriile metode; în general este o bandă albă, peste care se aplică ștampila de control a secției de votare)</li>
+        <li>Confuzie sau lipsă de organizare, cazuri în care membrii comisiilor de votare nu urmează procedurile</li>
+        <li>Prezenţa persoanelor neautorizate în secţiile de votare (primari, consilieri locali, membri de partid etc)</li>
+        <li>Cazurile în care identitatea alegătorilor nu este verificată</li>
+        <li>Activităţi inoportune din partea reprezentanţilor candidaţilor sau partidelor politice, imixtiuni în activitatea birourilor electorale sau observatorilor</li>
+        <li>Păstrarea în condiţii precare a buletinelor de vot neutilizate</li>
+        <li>Excluderea unor membri ai comisiilor de votare sau unor observatori pe motive nejustificate</li>
+        <li>Însoțirea frecventă de către membri ai birourilor electorale, observatori sau alte persoane a unor persoane care au dificultăți în a vota</li>
+      </ul>
+      <h2>Numărarea voturilor (pentru persoanele acreditate)</h2>
+      <ul>
+        <li>Proceduri dezordonate de numărare a voturilor</li>
+        <li>Personal insuficient pentru efectuarea şi supravegherea numărării voturilor</li>
+        <li>Transportarea materialelor electorale la biroul electoral de circumscriptie nu se efectuează în condiţii de siguranţă</li>
+        <li>Lipsa transparenţei sau proceduri nereglementare constatate în cursul centralizării voturilor</li>
+        <li>Participarea la numărarea voturilor a persoanelor neautorizate (membri de partid, primar, parlamentari, observatori etc)</li>
+      </ul>
+      <p>Informații preluate parțial din <a href=""https://www.osce.org/ro/odihr/elections/70293?download=true"" target=""_blank"">Manualul de observare a alegerilor, OSCE/ODIHR</a>; completate cu informații din experiențele anterioare de observare. Vezi și <a href=""https://votcorect.ro/wp-content/uploads/2016/12/Manualul-Observatorului.pdf"" target=""_blank"">Manualul Observatorului</a>.</p>",police,2
+11,Despre noi,Active,"<Stamp>
+  <Icons icon=""mvCircle"" />
+</Stamp>
+<p>
+  Monitorizare Vot este un proiect Code for Romania. Scopul nostru este dezvoltarea unui instrument IT prin care observatorii electorali i să poată transmite simplu și rapid sesizările lor către ONG-ul care i-a acreditat. În plus ,oferim cetățenilor o platformă foarte ușor de folosit unde se pot face auziți atunci când au de semnalat o neregulă în desfășurarea alegerilor. Ne dorim astfel să-i încurajăm pe oameni să se implice în procesul electoral, pentru alegeri corecte în toată țara. Partenerii proiectului: <a href=""http://expertforum.ro/"" target=""_blank"">EFOR</a>, <a href=""https://www.facebook.com/groups/1591449631185716/"" target=""_blank"">Geeks for Democracy</a>, <a href=""http://www.funkycitizens.org/"" target=""_blank"">Funky Citizens</a>, <a href=""https://www.facebook.com/Observatorul-Electoral-307266686310878/"" target=""_blank"">Observatorul Electoral</a>, <a href=""http://resursecivice.ro/"" target=""_blank"">Centrul pentru Resurse Civice</a> și <a href=""http://www.democracycenter.ro/romana"" target=""_blank"">Centrul pentru Studiul Democratiei</a>
+</p>
+<p>
+  Monitorizare Vot a câștigat premiul I pentru Participare Civică în 2017 la Gala Societății Civile. Aplicația de observare a alegerilor va fi utilizată în Polonia, în cadrul alegerilor din octombrie 2018. Informații despre versiunea internațională a aplicației sunt disponibile <a href=""http://www.votemonitor.org/"" target=""_blank"">aici</a>.
+</p>
+<Stamp>
+  <a href=""http://www.code4.ro/"" target=""_blank""><Icons icon=""code4"" /></a>
+</Stamp>
+<p>Code for Romania este o organizație neguvernamentală, neafiliată politic și apolitică, înființată în 2016. Code for Romania își propune să formeze o comunitate de profesioniști în IT care să creeze soluții digitale ce rezolvă probleme ale societății. Misiunea noastră este să dăm oamenilor informaţiile, mijloacele şi curajul să se implice mai mult în rezolvarea problemelor societăţii. Proiectele Code for Romania sunt dezvoltate pe bază de voluntariat și în format open-source.</p>
+<Legal>
+  <h3>Notă:</h3>
+  <p>Toate informațiile prezentate pe acest website sunt bazate pe sesizările primite de la utilizatori. <a href=""http://votcorect.ro"" target=""_blank"">Sursa pentru regulile de vot este platforma votcorect.ro</a>. Echipa de administrare a website-ului face o minimă verificare a sesizărilor înainte de publicare, pentru a se asigura ca acestea au legatura cu subiectului alegerilor, dar nu își asumă responsabilitatea pentru conținutul și veridicitatea sesizărilor transmise de către utilizatori. Scopul platformei este acela de a informa cetățenii și de a oferi un spațiu de exprimare celor care doresc să sesizeze eventuale tentative de fraudă electorală. Platforma și statisticile aferente vor fi promovate către mass-media. Echipa Code for Romania nu își asumă responsabilitatea pentru transmiterea acestor sesizări mai departe către autoritățile competente și nici pentru oferirea de răspunsuri la sesizarile utilizatorilor. Pentru aceasta vă rugăm să va adresati Biroul Electoral de Circumscriptie sau Biroul Electoral Central.</p>
+</Legal>	",,0

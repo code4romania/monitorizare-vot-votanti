@@ -8,6 +8,7 @@ use App\Incident;
 use App\User;
 use App\City;
 use App\County;
+use App\Page;
 
 class DatabaseSeeder extends Seeder
 {
@@ -18,11 +19,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         IncidentType::truncate();
         Incident::truncate();
         City::truncate();
         County::truncate();
+        Page::truncate();
         Precinct::truncate();
         User::getQuery()->delete();
         Eloquent::unguard();
@@ -33,5 +34,6 @@ class DatabaseSeeder extends Seeder
         //$this->call(IncidentsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
         $this->call(PrecinctsTableSeeder::class);
+        $this->call(PagesTableSeeder::class);
     }
 }
