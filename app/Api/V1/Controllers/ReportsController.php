@@ -38,6 +38,7 @@ class ReportsController extends Controller
     {   
         return response()->json([
             'totalIncidents' => Reports::totalIncidents(),
+            'incidentCountsByStatus' => Reports::totalIncidentCountsByStatus(),
             'incidentsByType' => Reports::totalIncidentsByType(),
             'incidentsByCounty' => Reports::countiesWithIncidents()
         ], 200);

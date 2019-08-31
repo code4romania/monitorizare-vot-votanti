@@ -102,6 +102,17 @@ class ReportingController extends Controller
 	public function incidentsCountingPerPrecinct() {
 		return $this->getIncidentsByType('CNT');
 	}
+
+	/**
+	 * Get the number of incidents by status per precinct.
+	 * @return \Illuminate\Http\JsonResponse
+	 */
+	public function incidentsCountingByStatus() {
+        return response()->json([
+            'totalIncidents' => Reports::totalIncidents(),
+            'incidentCountsByStatus' => Reports::totalIncidentCountsByStatus()
+        ], 200);
+	}
 	
 	private function getIncidentsByType($type) {
 		$limit = Input::get('limit') ?: 20;
