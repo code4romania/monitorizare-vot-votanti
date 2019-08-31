@@ -21,6 +21,11 @@ class Reports extends Controller
 
     public static function totalIncidents()
     {
+        return Incident::where('status', 'Approved')->count();
+    }
+
+    public static function totalIncidentsAllStatuses()
+    {
         return Incident::count();
     }
 
@@ -46,7 +51,7 @@ class Reports extends Controller
      *
      * @return mixed
      */
-    public static function totalIncidentCountsByStatus()
+    public static function totalIncidentsByStatus()
     {
         $groupedIncidents = Incident::select(DB::raw('count(*) as count, status'))
             ->groupBy('status')

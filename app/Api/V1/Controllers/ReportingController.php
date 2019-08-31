@@ -109,8 +109,8 @@ class ReportingController extends Controller
 	 */
 	public function incidentsCountingByStatus() {
         return response()->json([
-            'totalIncidents' => Reports::totalIncidents(),
-            'incidentCountsByStatus' => Reports::totalIncidentCountsByStatus()
+            'totalIncidentsAllStatuses' => Reports::totalIncidentsAllStatuses(),
+            'totalIncidentsByStatus' => Reports::totalIncidentsByStatus()
         ], 200);
 	}
 	
