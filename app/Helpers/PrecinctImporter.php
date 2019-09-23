@@ -117,7 +117,7 @@ class PrecinctImporter
     private function importPrecinctsFromArray(array $data)
     {
         foreach ($data as $rawPrecinctData) {
-            try{
+            try {
                 $existingPrecinct = Precinct::where([
                     'precinct_no' => $rawPrecinctData['precinct_no'],
                     'city_id' => $rawPrecinctData['city_id']
@@ -129,12 +129,9 @@ class PrecinctImporter
                     $precinct = new Precinct($rawPrecinctData);
                     $precinct->save();
                 }
-            } catch (QueryException $ex){
-                $precinctNo = isset($rawPrecinctData['precinct_no']) ? $rawPrecinctData['precinct_no'] : "missing";
-                $cityId = isset($rawPrecinctData['city_id']) ? $rawPrecinctData['city_id'] : "missing";
-                Log::warning("Could not persist precinct with precinct_no={$precinctNo} and city_id={$cityId}");
+            } catch (\Exception $ex) {
+                Log::error("Could not persist precinct {$this->getArrayAsString($rawPrecinctData)}: $ex");
             }
-
         }
     }
 
@@ -152,5 +149,14 @@ class PrecinctImporter
         }
         Log::warning("Could not find city with name $cityName and county with code $countyCode");
         return 0;
+    }
+
+    private function getArrayAsString($array)
+    {
+        try {
+            return json_encode($array);
+        } catch (\Exception $ex) {
+            return 'Array with error';
+        }
     }
 }
