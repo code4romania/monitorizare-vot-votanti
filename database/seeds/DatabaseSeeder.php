@@ -26,8 +26,8 @@ class DatabaseSeeder extends Seeder
 		Incident::truncate();
 		City::truncate();
 		County::truncate();
-        Page::truncate();
-        Precinct::truncate();
+		Page::truncate();
+		Precinct::truncate();
 		User::getQuery()->delete();
 		Eloquent::unguard();
         $this->call(CountiesTableSeeder::class);
