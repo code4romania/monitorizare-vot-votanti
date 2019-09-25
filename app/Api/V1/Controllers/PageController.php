@@ -29,10 +29,35 @@ class PageController extends Controller
         $this->pageTransformer = $pageTransformer;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
+	/**
+	 * @SWG\Get(
+	 *     path="/api/page",
+	 *     summary="Fetch pages",
+	 *     tags={"Pages"},
+	 *     description="Fetch pages",
+	 *     operationId="",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+ 	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=200, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function index(Request $request)
     {
         $limit = $request->get('limit', 20);
@@ -43,10 +68,57 @@ class PageController extends Controller
         ], Response::HTTP_OK);
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse|void
-     */
+
+	/**
+	 * @SWG\Post(
+	 *     path="/api/page",
+	 *     summary="Store page",
+	 *     tags={"Pages"},
+	 *     description="Store page",
+	 *     operationId="storePage",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="title",
+	 *     type="string",
+	 *     description="Page title",
+	 *     required=true
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="status",
+	 *     type="string",
+	 *     description="Page status (Active|Inactive)",
+	 *     required=true
+	 *   ),
+ 	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="description",
+	 *     type="string",
+	 *     description="Page description",
+	 *     required=true
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=200, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     public function store(Request $request)
     {
         $rules = [
@@ -74,6 +146,67 @@ class PageController extends Controller
         }
     }
 
+
+	/**
+	 * @SWG\Put(
+	 *     path="/api/page/{page}",
+	 *     summary="Store page",
+	 *     tags={"Pages"},
+	 *     description="Store page",
+	 *     operationId="storePage",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="path",
+	 *     name="page",
+	 *     type="number",
+	 *     description="page id to update",
+	 *     required=true,
+	 *     collectionFormat="multi"
+	 *   ),
+ 	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="title",
+	 *     type="string",
+	 *     description="Page title",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="status",
+	 *     type="string",
+	 *     description="Page status (Active|Inactive)",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="description",
+	 *     type="string",
+	 *     description="Page description",
+	 *     required=false
+	 *   ),
+
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=200, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized"),
+	 *     @SWG\Response(response="422", description="store resource failed")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     /**
      * @param Request $request
      * @param int $id
@@ -104,6 +237,46 @@ class PageController extends Controller
         }
     }
 
+
+	/**
+	 * @SWG\Delete(
+	 *     path="/api/page/{page}",
+	 *     summary="Delete page",
+	 *     tags={"Pages"},
+	 *     description="Delete page",
+	 *     operationId="",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="path",
+	 *     name="page",
+	 *     type="number",
+	 *     description="page id to update",
+	 *     required=true,
+	 *     collectionFormat="multi"
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=201, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized"),
+	 *     @SWG\Response(response="404", description="Record does not exist"),
+	 *     @SWG\Response(response="500", description="could_not_delete_page")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     /**
      * @param int $id
      * @return \Illuminate\Http\JsonResponse|void
@@ -120,6 +293,46 @@ class PageController extends Controller
         }
     }
 
+
+	/**
+	 * @SWG\Post(
+	 *     path="/api/page/{page}/approve",
+	 *     summary="Approve page",
+	 *     tags={"Pages"},
+	 *     description="Approve page",
+	 *     operationId="",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="path",
+	 *     name="page",
+	 *     type="number",
+	 *     description="page id to update",
+	 *     required=true,
+	 *     collectionFormat="multi"
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=204, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized"),
+	 *     @SWG\Response(response="404", description="Record does not exist"),
+	 *     @SWG\Response(response="500", description="could_not_delete_page")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     /**
      * @param int $id
      * @return \Illuminate\Http\JsonResponse|void
@@ -138,6 +351,46 @@ class PageController extends Controller
         }
     }
 
+
+	/**
+	 * @SWG\Post(
+	 *     path="/api/page/{page}/reject",
+	 *     summary="Reject page",
+	 *     tags={"Pages"},
+	 *     description="Reject page",
+	 *     operationId="",
+	 *     consumes={"application/json"},
+	 *     produces={"application/json"},
+	 *   @SWG\Parameter(
+	 *     in="path",
+	 *     name="page",
+	 *     type="number",
+	 *     description="page id to update",
+	 *     required=true,
+	 *     collectionFormat="multi"
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="limit",
+	 *     type="integer",
+	 *     description="pagination limit",
+	 *     required=false
+	 *   ),
+	 *   @SWG\Parameter(
+	 *     in="query",
+	 *     name="token",
+	 *     type="string",
+	 *     description="authentication token",
+	 *     required=false
+	 *   ),
+	 *     @SWG\Response(response=204, description="successful operation"),
+	 *     @SWG\Response(response="401", description="unauthorized"),
+	 *     @SWG\Response(response="404", description="Record does not exist"),
+	 *     @SWG\Response(response="500", description="could_not_delete_page")
+	 * )
+	 * @param Request $request
+	 * @return \Illuminate\Http\JsonResponse
+	 */
     /**
      * @param int $id
      * @return \Illuminate\Http\JsonResponse|void

@@ -74,7 +74,7 @@ class PrecinctController extends Controller
      *     description="successful operation",
      *     @SWG\Schema(ref="#/definitions/Precinct")
      *   ),
-     *   @SWG\Response(response=400,  description="Invalid Precinct")
+     *   @SWG\Response(response=400,  description="Invalid Precinct"),
      *   @SWG\Response(response=409,  description="Duplicate Precinct")
      * )
      */

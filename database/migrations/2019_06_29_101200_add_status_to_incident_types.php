@@ -39,14 +39,15 @@ class AddStatusToIncidentTypes extends Migration
     public function down()
     {
         Schema::table('incidents', function(Blueprint $table) {
-            $table->dropForeign('incident_type_id');
-            DB::statement('ALTER TABLE' . ' incidents' . ' modify incident_type_id varchar(255)');
+			$table->dropForeign(['incident_type_id']);
         });
-
+        Schema::table('incidents', function(Blueprint $table) {
+			DB::statement('ALTER TABLE' . ' incidents' . ' modify incident_type_id varchar(255)');
+		});
         Schema::table('incident_types', function (Blueprint $table) {
-            $table->dropColumn('status');
-            $table->dropUnique('code');
-        });
+			$table->dropColumn('status');
+			$table->dropUnique(['code']);
+		});
 
         $tables = [
             'incident_types',
