@@ -124,7 +124,7 @@ class PageController extends Controller
         $rules = [
             'title' => 'required|max:200',
             'status' => 'in:Active,Inactive',
-            'description' => 'required|max:500',
+            'content' => 'required',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {
@@ -217,7 +217,6 @@ class PageController extends Controller
         $rules = [
             'title' => 'max:200',
             'status' => 'in:Active,Inactive',
-            'description' => 'max:500',
         ];
         $validator = Validator::make($request->all(), $rules);
         if ($validator->fails()) {

@@ -1,8 +1,8 @@
 <?php
 
-use App\Page;
+use App\Helpers\CsvHandler;
 use Illuminate\Database\Seeder;
-use Faker\Factory as Faker;
+use App\Page;
 
 class PagesTableSeeder extends Seeder
 {
@@ -13,16 +13,9 @@ class PagesTableSeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker::create();
-
-        foreach (range(1, 50) as $index)
-        {
-            Page::create([
-                'title' => $faker->text(255),
-                'status' => $faker->randomElement(['Active', 'Inactive']),
-                'description' => $faker->realText(500),
-                'user_id' => 1
-            ]);
+        $data = CsvHandler::convertToArray('resources/files/pages/pages.csv', true);
+        foreach ($data as $row) {
+            Page::create($row);
         }
     }
 }

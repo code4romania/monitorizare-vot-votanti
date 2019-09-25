@@ -8,6 +8,7 @@ use App\Incident;
 use App\User;
 use App\City;
 use App\County;
+use App\Page;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +26,7 @@ class DatabaseSeeder extends Seeder
 		Incident::truncate();
 		City::truncate();
 		County::truncate();
+		Page::truncate();
 		Precinct::truncate();
 		User::getQuery()->delete();
 		Eloquent::unguard();
