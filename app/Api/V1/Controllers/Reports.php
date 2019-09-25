@@ -24,6 +24,11 @@ class Reports extends Controller
         return Incident::where('status', 'Approved')->count();
     }
 
+    public static function totalIncidentsAllStatuses()
+    {
+        return Incident::count();
+    }
+
     public static function countiesWithIncidents()
     {
         $counties = County::orderBy('name')->get();
@@ -37,6 +42,19 @@ class Reports extends Controller
             ->where('status', 'Approved')
             ->groupBy('incident_type_id')
             ->with('type')
+            ->get();
+        return $groupedIncidents;
+    }
+
+    /**
+     * Counts for each incident status ("Approved", "Pending", "Rejected")
+     *
+     * @return mixed
+     */
+    public static function totalIncidentsByStatus()
+    {
+        $groupedIncidents = Incident::select(DB::raw('count(*) as count, status'))
+            ->groupBy('status')
             ->get();
         return $groupedIncidents;
     }
