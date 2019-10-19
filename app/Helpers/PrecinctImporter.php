@@ -130,7 +130,8 @@ class PrecinctImporter
                     $precinct->save();
                 }
             } catch (\Exception $ex) {
-                Log::error("Could not persist precinct {$this->getArrayAsString($rawPrecinctData)}: $ex");
+                $jsonRawPrecinctData = json_encode($rawPrecinctData);
+                Log::error("Could not persist precinct {$jsonRawPrecinctData}: $ex");
             }
         }
     }
@@ -149,14 +150,5 @@ class PrecinctImporter
         }
         Log::warning("Could not find city with name $cityName and county with code $countyCode");
         return 0;
-    }
-
-    private function getArrayAsString($array)
-    {
-        try {
-            return json_encode($array);
-        } catch (\Exception $ex) {
-            return 'Array with error';
-        }
     }
 }
