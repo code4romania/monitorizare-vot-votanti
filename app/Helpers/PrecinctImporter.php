@@ -117,7 +117,7 @@ class PrecinctImporter
     private function importPrecinctsFromArray(array $data)
     {
         foreach ($data as $rawPrecinctData) {
-            try{
+            try {
                 $existingPrecinct = Precinct::where([
                     'precinct_no' => $rawPrecinctData['precinct_no'],
                     'city_id' => $rawPrecinctData['city_id']
@@ -129,10 +129,10 @@ class PrecinctImporter
                     $precinct = new Precinct($rawPrecinctData);
                     $precinct->save();
                 }
-            } catch (QueryException $ex){
-                Log::warning("Could not persist precinct \n $precinct");
+            } catch (\Exception $ex) {
+                $jsonRawPrecinctData = json_encode($rawPrecinctData);
+                Log::error("Could not persist precinct {$jsonRawPrecinctData}: $ex");
             }
-
         }
     }
 
